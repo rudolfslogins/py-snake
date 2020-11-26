@@ -1,4 +1,6 @@
 """Snake game in python"""
+from pathlib import Path
+
 import pygame
 from direction import Direction
 from game import Game
@@ -6,12 +8,16 @@ from configurations import Configurations
 
 pygame.init()
 pygame.display.set_caption("PySnake")
+abs_path = str(Path("images\png-snake-icon.png").absolute()).replace('\\','\\\\')
+icon = pygame.image.load(abs_path)
+pygame.display.set_icon(icon)
 clock = pygame.time.Clock()
 
 cf = Configurations()
 game = Game(cf)
 win = pygame.display.set_mode((cf.board_width + 1, cf.board_width + 1 + cf.cell_size * 2))
 
+# Main game loop
 while True:
     pygame.time.delay(260 - game.level * 20)
     clock.tick(40)
@@ -32,7 +38,7 @@ while True:
     game.snake.move()
     STATE = game.grid.check_snake_state()
     if STATE == -1:
-        game.message_box("GAME OVER", f"You lost with score: {game.points} on Level: {game.level}")
+        game.message_box("GAME OVER", f"You lost\nLevel: {game.level} Score: {game.points}")
         break
     if STATE == 1:
         game.snake.grow() 

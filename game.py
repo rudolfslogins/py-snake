@@ -6,7 +6,9 @@ from direction import Direction
 from cell import Cell
 from snake import Snake
 from grid import Grid
-from configurations import COLOR_RED, COLOR_BLACK, COLOR_L_BLACK, COLOR_GREEN, COLOR_WHITE
+from configurations import COLOR_RED, COLOR_BLACK, COLOR_L_BLACK, \
+    COLOR_GREEN, COLOR_WHITE, COLOR_YELLOW, COLOR_L_YELLOW, COLOR_GREY,\
+    COLOR_BLUE, COLOR_L_BLUE, COLOR_LIGHT_GREY
 import pygame
 
 class Game():
@@ -61,9 +63,9 @@ class Game():
 
         if self.config.show_grid:
             for _ in range(self.config.board_rows + 1):
-                pygame.draw.line(surface, COLOR_WHITE, (pos_x, self.config.cell_size * 2),\
+                pygame.draw.line(surface, COLOR_L_BLUE, (pos_x, self.config.cell_size * 2),\
                     (pos_x, self.config.board_width + self.config.cell_size * 2))
-                pygame.draw.line(surface, COLOR_WHITE, (0,pos_y),(self.config.board_width,pos_y))
+                pygame.draw.line(surface, COLOR_L_BLUE, (0,pos_y),(self.config.board_width,pos_y))
                 pos_x = pos_x + self.config.cell_size
                 pos_y = pos_y + self.config.cell_size
         else:
@@ -79,16 +81,16 @@ class Game():
 
     def redraw_window(self, surface):
         """Redraw game window"""
-        surface.fill(COLOR_GREEN)
+        surface.fill(COLOR_LIGHT_GREY)
         self.draw_grid(surface)
         for apple in self.apples:
             self.draw_cell(surface, apple, color=COLOR_RED, is_apple=True)
 
-        self.draw_cell(surface, self.snake.head, color=COLOR_BLACK)
+        self.draw_cell(surface, self.snake.head, color=COLOR_BLUE)
         for t_cell in self.snake.tail:
-            self.draw_cell(surface, t_cell, color=COLOR_L_BLACK)
+            self.draw_cell(surface, t_cell, color=COLOR_YELLOW)
         font = pygame.font.SysFont('Arial', self.config.cell_size, True)
-        img = font.render(f"Level: {self.level}  Score: {self.points}", True, COLOR_BLACK)
+        img = font.render(f"Level: {self.level}  Score: {self.points}", True, COLOR_BLUE)
         surface.blit(img, (self.config.cell_size // 2, self.config.cell_size // 2))
         pygame.display.update()
 
