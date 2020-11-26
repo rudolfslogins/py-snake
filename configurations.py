@@ -9,7 +9,7 @@ COLOR_RED = (255,0,0)
 CELL_SIZE = 20
 BANNER_ROWS = 2
 BOARD_ROWS = 30
-SHOW_GRID = True
+SHOW_GRID = False
 
 class Configurations():
     """Snake game configuration paramaters"""
