@@ -8,8 +8,8 @@ from configurations import Configurations
 
 pygame.init()
 pygame.display.set_caption("PySnake")
-abs_path = str(Path("images\png-snake-icon.png").absolute()).replace('\\','\\\\')
-icon = pygame.image.load(abs_path)
+ABS_PATH = str(Path(r"images\png-snake-icon.png").absolute())
+icon = pygame.image.load(ABS_PATH)
 pygame.display.set_icon(icon)
 clock = pygame.time.Clock()
 
